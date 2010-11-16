@@ -22,7 +22,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 /*jslint evil:false, strict:false, undef:true, white:false, onevar:false, browser:true */
 /**
- *  Preloadr is a small module for preloading resoruces into the browser cache.
+ *  Preloadr is a small module for sequential preloading resoruces into the browser cache.
  * 
  *  Preloadr is SLOW(ish), as it will not load more than one asset at a time. For most preloading use cases, you probably want
  *  something that downloads assets as fast as possible, maximizing the use of many parallel connections of your browser.
