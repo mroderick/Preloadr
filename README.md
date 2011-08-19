@@ -28,3 +28,10 @@ If you're not setting expires headers, you'll just be consuming even more bandwi
 To verify that Preloadr is working as intended, open up Firebug / Web Inspector / whatnot, and check that resources are not loaded in parallel, but are loaded sequentially (should look like a staircase).
 
 The minified version is done with YUI Compressor (for safety), if you prefer other minifiers, you'll have to minify it yourself.
+
+## Unit tests
+
+To run the unit tests, follow these steps:
+ - Run tools/runtestserver.sh
+ - Open http://localhost:4567/ in the browser you want to test the code with
+ - Run tools/runtests.sh every time you want to run the tests
