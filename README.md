@@ -32,6 +32,8 @@ The minified version is done with YUI Compressor (for safety), if you prefer oth
 ## Unit tests
 
 To run the unit tests, follow these steps:
-*   Run tools/runtestserver.sh
-*   Open http://localhost:4567/ in the browser you want to test the code with.
-*   Run tools/runtests.sh every time you want to run the tests.
+<ul>
+<li>Run tools/runtestserver.sh</li>
+<li>Open http://localhost:4567/ in the browser you want to test the code with.</li>
+<li>Run tools/runtests.sh every time you want to run the tests.</li>
+</ul>
