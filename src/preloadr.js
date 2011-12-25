@@ -1,6 +1,6 @@
 /*! 
     Preloadr Library: https://github.com/mroderick/Preloadr/
-    Licensed under the BSD License
+    Licensed under the MIT License
     Copyright (c) 2010 Morgan Roderick http://roderick.dk
 */
 /*
