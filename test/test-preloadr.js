@@ -1,13 +1,12 @@
 /*jslint evil:false, strict:false, undef:true, white:false, onevar:false, plusplus:false */
-/*global sinon,TestCase,Preloadr,console,assertTrue:true*/
-
-(function(sinon) {
+/*global sinon, Preloadr, console:true*/
+(function(){
 	var global = (function(){return this;}()),
-		skipMsg = "skipping this test because setters are not supported in this browser";
-	
-	var MockImage = function() {
-	    this.constructed();
-	};
+		skipMsg = "skipping this test because setters are not supported in this browser",
+	    MockImage = function() {
+	        this.constructed();
+	    },
+	    settersOnNonNativeObjectsAreSupported = false;
 	
 	//method to mock with sinon since it doesn't yet support
 	//constructors in the current version
@@ -35,24 +34,25 @@
         }
     });
 	
-	var settersOnNonNativeObjectsAreSupported = false;
-    try {
-        if (Object.defineProperty({},"x",{get: function(){return true;}}).x) {
+    try {        
+        if ( Object.defineProperty( {},"x", { get: function(){ return true; }}).x ){
             settersOnNonNativeObjectsAreSupported = true;
         }
-    } catch (e) {}
+    } catch (e){}
 		
-	TestCase("test-preloadr",{
+	buster.testCase( "test-preloadr", {
 		setUp: function() {
 			if(!settersOnNonNativeObjectsAreSupported) {return;}
 			//replace global Image class with mock
 			this.nativeImageClass = global.Image;
 			global.Image = MockImage;
 		},
+		
 		tearDown: function() {
 			if(!settersOnNonNativeObjectsAreSupported) {return;}
 			global.Image = this.nativeImageClass;
 		},
+		
 		//test MockImage itself, since it has some complexity
 		testMock: function() {
 			if(!settersOnNonNativeObjectsAreSupported) {
@@ -68,14 +68,15 @@
 			mock.onload = successCallback;
 			mock.onerror = failCallback;
 			mock.src = "successurl";
-			assertTrue(called);
+			assert( called );
 			called = false;
 			
 			mock.onload = failCallback;
 			mock.onerror = successCallback;
 			mock.src = "failurl";
-			assertTrue(called);
+			assert( called );
 		},
+		
 		testCache: function() {
 			if(!settersOnNonNativeObjectsAreSupported) {
 				console.log(skipMsg);
@@ -96,6 +97,7 @@
 			
 			mock.verify();
 		},
+		
 		testSuccessAfterNonExistentImage: function() {
 			if(!settersOnNonNativeObjectsAreSupported) {
 				console.log(skipMsg);
@@ -110,6 +112,7 @@
 			
 			mock.verify();
 		},
+		
 		testMultipleImages: function() {
 			if(!settersOnNonNativeObjectsAreSupported) {
 				console.log(skipMsg);
@@ -125,4 +128,4 @@
 			mock.verify();
 		}
 	});
-}(sinon));
+}());
