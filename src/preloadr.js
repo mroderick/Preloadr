@@ -64,8 +64,13 @@ var Preloadr = (function(){
         images = [];    // keeps references to the Image objects, needed to make sure that Firefox respects the cache
 
     function load( urls ){
-        var url, image;
-        if ( Object.prototype.toString.call( urls ) === '[object Array]' && urls.length > 0 ){
+        var url,
+            image,
+            next,
+            calledWithArray = Object.prototype.toString.call( urls ) === '[object Array]',
+            calledWithNonEmptyArray = calledWithArray && urls.length > 0;
+            
+        if ( calledWithNonEmptyArray ){
             // get the first url of the array
             url = urls.shift();
 
@@ -75,7 +80,7 @@ var Preloadr = (function(){
             // otherwise, let's preload it
             } else {
                 // the function to call when an image has finished loading or has failed to load
-                var next = function(){
+                next = function(){
                     load( urls );
                 };
                 
