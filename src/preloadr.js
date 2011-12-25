@@ -23,7 +23,7 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-/*jslint evil:false, strict:false, undef:true, white:false, onevar:false, browser:true */
+/*jslint evil:false, sloppy:false, undef:true, white:true, browser:true */
 /**
  *  Preloadr is a small module for **sequential** preloading of resources into the browser cache.
  * 
