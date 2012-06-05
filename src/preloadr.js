@@ -24,6 +24,11 @@ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 /*jslint white:true, plusplus:true, browser:true */
+/*global
+    module,
+    exports,
+    define
+*/
 /**
  *  Preloadr is a small module for **sequential** preloading of resources into the browser cache.
  * 
@@ -57,9 +62,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *  If you're not setting expires headers, you'll just be consuming even more bandwidth, and not improving user
  *  experience at all.
  **/
-var Preloadr = (function(){
+
+ (function(root){
     "use strict";
-    
+
     var processed = {}, // keeps track of all the urls we've already processed
         images = [];    // keeps references to the Image objects, needed to make sure that Firefox respects the cache
 
@@ -101,5 +107,27 @@ var Preloadr = (function(){
             }
         }
     }
-    return load;
-}());
+
+    // Export the Preloadr object for **Node.js** and **"CommonJS"**, with
+    // backwards-compatibility for the old `require()` API. If we're not in
+    // CommonJS, add `Preloadr` to the global object via a string identifier for
+    // the Closure Compiler "advanced" mode. Registration as an AMD module
+    // via define() happens at the end of this file.
+    if (typeof exports !== 'undefined') {
+        if (typeof module !== 'undefined' && module.exports) {
+            module.exports = load;
+        }
+        exports.Preloadr = load;
+    } else {
+        root.Preloadr = load;
+    }
+
+
+    // AMD define happens at the end for compatibility with AMD loaders
+    // that don't enforce next-turn semantics on modules.
+    if (typeof define === 'function' && define.amd) {
+        define(function(){
+            return load;
+        });
+    }
+}(this));
