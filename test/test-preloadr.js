@@ -74,7 +74,7 @@
 			mock.onload = failCallback;
 			mock.onerror = successCallback;
 			mock.src = "failurl";
-			assert( called );
+			buster.assert( called );
 		},
 		
 		testCache: function() {
@@ -95,7 +95,7 @@
 			//Now hit the cache and check if we got called
 			Preloadr([imageUrl]);
 			
-			mock.verify();
+			buster.assert( mock.verify() );
 		},
 		
 		testSuccessAfterNonExistentImage: function() {
@@ -110,7 +110,7 @@
 	        
 			Preloadr(["failurl","successurl"]);
 			
-			mock.verify();
+			buster.assert( mock.verify() );
 		},
 		
 		testMultipleImages: function() {
@@ -125,7 +125,7 @@
 			
 			Preloadr(["image1of3","image2of3","image3of3"]);
 			
-			mock.verify();
+			buster.assert( mock.verify() );
 		}
 	});
 }());

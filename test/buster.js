@@ -1,11 +1,12 @@
 var config = module.exports;
 
 config["Preloadr"] = {
+	rootPath : "../",
     env: "browser",        // or "node"
     sources: [
-        "../src/preloadr.js"
+        "src/preloadr.js"
     ],
     tests: [
-        "test-preloadr.js"
+        "test/test-preloadr.js"
     ]
 }
