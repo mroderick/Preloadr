@@ -1,3 +1,4 @@
+# Preloadr [![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 Preloadr is a small module for **sequential** preloading of resources into the browser cache.
 
 Preloadr is SLOW(ish), as it will not load more than one resource at a time. For most preloading use cases, you probably want something that downloads resources in parallel, maximizing the use of connections in browsers.
